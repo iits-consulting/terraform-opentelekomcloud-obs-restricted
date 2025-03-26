@@ -15,7 +15,7 @@ variable "enable_versioning" {
 
 variable "force_destroy" {
   type        = bool
-  description = "Destroy all objects from the bucket so that the bucket can be destroyed without error. Default: false"
+  description = "Destroy all objects from the bucket so that the bucket can be destroyed without error."
   default     = false
 }
 
