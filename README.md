@@ -80,7 +80,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_bucket_access_key"></a> [bucket\_access\_key](#output\_bucket\_access\_key) | n/a |
-| <a name="output_bucket_name"></a> [bucket\_name](#output\_bucket\_name) | n/a |
-| <a name="output_bucket_secret_key"></a> [bucket\_secret\_key](#output\_bucket\_secret\_key) | n/a |
+| <a name="output_bucket_access_key"></a> [bucket\_access\_key](#output\_bucket\_access\_key) | OBS bucket access key for the created user. Can only access to the specific bucket and the specific KMS key used for bucket encryption. |
+| <a name="output_bucket_name"></a> [bucket\_name](#output\_bucket\_name) | OBS bucket name passthrough with dependency chain. |
+| <a name="output_bucket_secret_key"></a> [bucket\_secret\_key](#output\_bucket\_secret\_key) | OBS bucket secret key for the created user. Can only access to the specific bucket and the specific KMS key used for bucket encryption. |
 <!-- END_TF_DOCS -->
