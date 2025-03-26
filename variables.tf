@@ -13,6 +13,12 @@ variable "enable_versioning" {
   default     = true
 }
 
+variable "force_destroy" {
+  type        = bool
+  description = "Destroy all objects from the bucket so that the bucket can be destroyed without error."
+  default     = false
+}
+
 variable "tags" {
   type    = map(string)
   default = null
