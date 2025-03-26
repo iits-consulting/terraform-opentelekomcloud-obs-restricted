@@ -73,6 +73,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Bucket name. Make sure the provider for this module has tennant\_name=<region> set | `string` | n/a | yes |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Disable the versioning for the bucket. Default: true | `bool` | `true` | no |
+| <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Destroy all objects from the bucket so that the bucket can be destroyed without error. Default: false | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | `null` | no |
 
 ## Outputs
