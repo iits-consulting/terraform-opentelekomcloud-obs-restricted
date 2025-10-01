@@ -35,7 +35,7 @@ resource "opentelekomcloud_obs_bucket" "bucket" {
       name    = lifecycle_rule.value.name
       enabled = lifecycle_rule.value.enabled
       prefix  = lifecycle_rule.value.prefix
-      
+
       dynamic "tag" {
         for_each = lifecycle_rule.value.tags != null ? lifecycle_rule.value.tags : []
         content {
@@ -43,14 +43,14 @@ resource "opentelekomcloud_obs_bucket" "bucket" {
           value = tag.value.value
         }
       }
-      
+
       dynamic "expiration" {
         for_each = lifecycle_rule.value.expiration != null ? [lifecycle_rule.value.expiration] : []
         content {
           days = expiration.value.days
         }
       }
-      
+
       dynamic "transition" {
         for_each = lifecycle_rule.value.transitions != null ? lifecycle_rule.value.transitions : []
         content {
@@ -58,14 +58,14 @@ resource "opentelekomcloud_obs_bucket" "bucket" {
           storage_class = transition.value.storage_class
         }
       }
-      
+
       dynamic "noncurrent_version_expiration" {
         for_each = lifecycle_rule.value.noncurrent_version_expiration != null ? [lifecycle_rule.value.noncurrent_version_expiration] : []
         content {
           days = noncurrent_version_expiration.value.days
         }
       }
-      
+
       dynamic "noncurrent_version_transition" {
         for_each = lifecycle_rule.value.noncurrent_version_transitions != null ? lifecycle_rule.value.noncurrent_version_transitions : []
         content {
@@ -73,7 +73,7 @@ resource "opentelekomcloud_obs_bucket" "bucket" {
           storage_class = noncurrent_version_transition.value.storage_class
         }
       }
-      
+
       dynamic "abort_incomplete_multipart_upload" {
         for_each = lifecycle_rule.value.abort_incomplete_multipart_upload != null ? [lifecycle_rule.value.abort_incomplete_multipart_upload] : []
         content {
