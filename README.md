@@ -33,7 +33,7 @@ module "obs_restricted_eu_de" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_errorcheck"></a> [errorcheck](#requirement\_errorcheck) | 3.0.3 |
-| <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | ~> 1.36 |
+| <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | ~> 1.35 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
 
 ## Providers
@@ -41,7 +41,7 @@ module "obs_restricted_eu_de" {
 | Name | Version |
 |------|---------|
 | <a name="provider_errorcheck"></a> [errorcheck](#provider\_errorcheck) | 3.0.3 |
-| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | ~> 1.36 |
+| <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | ~> 1.35 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
 
 ## Modules
@@ -73,11 +73,8 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Bucket name. Make sure the provider for this module has tennant\_name=<region> set | `string` | n/a | yes |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Disable the versioning for the bucket. Default: true | `bool` | `true` | no |
-| <a name="input_enable_worm_policy"></a> [enable\_worm\_policy](#input\_enable\_worm\_policy) | Enable WORM (Write Once Read Many) policy for the KMS key. Default: false | `bool` | `false` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Destroy all objects from the bucket so that the bucket can be destroyed without error. | `bool` | `false` | no |
-| <a name="input_lifecycle_rules"></a> [lifecycle\_rules](#input\_lifecycle\_rules) | Lifecycle rules for the bucket. Default: null | <pre>list(object({<br/>    name    = string<br/>    enabled = bool<br/>    prefix  = optional(string)<br/>    tags = optional(list(object({<br/>      key   = string<br/>      value = string<br/>    })))<br/>    expiration = optional(object({<br/>      days = number<br/>    }))<br/>    transitions = optional(list(object({<br/>      days          = number<br/>      storage_class = string<br/>    })))<br/>    noncurrent_version_expiration = optional(object({<br/>      days = number<br/>    }))<br/>    noncurrent_version_transitions = optional(list(object({<br/>      days          = number<br/>      storage_class = string<br/>    })))<br/>    abort_incomplete_multipart_upload = optional(object({<br/>      days = number<br/>    }))<br/>  }))</pre> | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(string)` | `null` | no |
-| <a name="input_worm_policy_years"></a> [worm\_policy\_years](#input\_worm\_policy\_years) | Number of years for the WORM policy retention period. Only used if enable\_worm\_policy is true. Default: 1 | `number` | `1` | no |
 
 ## Outputs
 
