@@ -23,3 +23,43 @@ variable "tags" {
   type    = map(string)
   default = null
 }
+
+variable "worm_policy" {
+  type = object({
+    years = optional(number)
+    days  = optional(number)
+  })
+  description = "[Optional] Enables and sets number of years OR days for the WORM policy retention period. Only one can be set, not both."
+  default     = null
+}
+
+variable "lifecycle_rules" {
+  type = list(object({
+    name    = string
+    enabled = bool
+    prefix  = optional(string)
+    tags = optional(list(object({
+      key   = string
+      value = string
+    })))
+    expiration = optional(object({
+      days = number
+    }))
+    transitions = optional(list(object({
+      days          = number
+      storage_class = string
+    })))
+    noncurrent_version_expiration = optional(object({
+      days = number
+    }))
+    noncurrent_version_transitions = optional(list(object({
+      days          = number
+      storage_class = string
+    })))
+    abort_incomplete_multipart_upload = optional(object({
+      days = number
+    }))
+  }))
+  description = "Lifecycle rules for the bucket. Default: null"
+  default     = []
+}
