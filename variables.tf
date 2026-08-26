@@ -13,6 +13,12 @@ variable "enable_versioning" {
   default     = true
 }
 
+variable "enable_sse" {
+  type        = bool
+  description = "Enable KMS server side encryption for buckets. Default: true"
+  default     = true
+}
+
 variable "force_destroy" {
   type        = bool
   description = "Destroy all objects from the bucket so that the bucket can be destroyed without error."
