@@ -1,6 +1,6 @@
 ## Restricted OBS Bucket
 
-This modules creates an OBS Bucket with KMS SSE default encryption and user that able to access to it.
+This modules creates an OBS Bucket with optional KMS SSE default encryption and user that able to access to it.
 
 > **Note**  
 > Please remember that OBS and KMS work only on top level projects (eu-de or eu-nl) !!!
@@ -72,6 +72,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | Bucket name. Make sure the provider for this module has tennant\_name=<region> set | `string` | n/a | yes |
+| <a name="input_enable_sse"></a> [enable\_sse](#input\_enable\_sse) | Enable KMS server side encryption for buckets. Default: true | `bool` | `true` | no |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Disable the versioning for the bucket. Default: true | `bool` | `true` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | Destroy all objects from the bucket so that the bucket can be destroyed without error. | `bool` | `false` | no |
 | <a name="input_lifecycle_rules"></a> [lifecycle\_rules](#input\_lifecycle\_rules) | Lifecycle rules for the bucket. Default: null | <pre>list(object({<br/>    name    = string<br/>    enabled = bool<br/>    prefix  = optional(string)<br/>    tags = optional(list(object({<br/>      key   = string<br/>      value = string<br/>    })))<br/>    expiration = optional(object({<br/>      days = number<br/>    }))<br/>    transitions = optional(list(object({<br/>      days          = number<br/>      storage_class = string<br/>    })))<br/>    noncurrent_version_expiration = optional(object({<br/>      days = number<br/>    }))<br/>    noncurrent_version_transitions = optional(list(object({<br/>      days          = number<br/>      storage_class = string<br/>    })))<br/>    abort_incomplete_multipart_upload = optional(object({<br/>      days = number<br/>    }))<br/>  }))</pre> | `[]` | no |
