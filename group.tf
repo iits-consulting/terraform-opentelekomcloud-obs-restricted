@@ -64,6 +64,7 @@ resource "errorcheck_is_valid" "provider_project_constraint" {
 }
 
 resource "opentelekomcloud_identity_role_v3" "kms_access" {
+  count         = var.enable_sse ? 1 : 0
   display_name  = "${var.bucket_name}-kms-role"
   description   = "KMS encryption access role for ${var.bucket_name}."
   display_layer = "project"
@@ -77,7 +78,7 @@ resource "opentelekomcloud_identity_role_v3" "kms_access" {
   statement {
     effect = "Allow"
     resource = [
-      "KMS:*:*:KeyId:${opentelekomcloud_kms_key_v1.bucket_kms_key.id}"
+      "KMS:*:*:KeyId:${opentelekomcloud_kms_key_v1.bucket_kms_key[0].id}"
     ]
     action = [
       "kms:cmk:generate",
@@ -89,9 +90,10 @@ resource "opentelekomcloud_identity_role_v3" "kms_access" {
 }
 
 resource "opentelekomcloud_identity_role_assignment_v3" "kms_adm_to_obs_group" {
+  count      = var.enable_sse ? 1 : 0
   group_id   = opentelekomcloud_identity_group_v3.obs_group.id
   project_id = data.opentelekomcloud_identity_project_v3.current.id
-  role_id    = opentelekomcloud_identity_role_v3.kms_access.id
+  role_id    = opentelekomcloud_identity_role_v3.kms_access[0].id
   lifecycle {
     ignore_changes = [project_id]
   }

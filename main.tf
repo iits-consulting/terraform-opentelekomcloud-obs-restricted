@@ -5,7 +5,7 @@ resource "random_id" "bucket_kms_key_id" {
 
 resource "opentelekomcloud_kms_key_v1" "bucket_kms_key" {
   count           = var.enable_sse ? 1 : 0
-  key_alias       = "${var.bucket_name}-key-${random_id.bucket_kms_key_id.hex}"
+  key_alias       = "${var.bucket_name}-key-${random_id.bucket_kms_key_id[0].hex}"
   key_description = "${var.bucket_name} encryption key"
   pending_days    = 7
   is_enabled      = "true"
@@ -22,7 +22,7 @@ resource "opentelekomcloud_obs_bucket" "bucket" {
     for_each = var.enable_sse ? [1] : []
     content {
       algorithm  = "kms"
-      kms_key_id = opentelekomcloud_kms_key_v1.bucket_kms_key.id
+      kms_key_id = opentelekomcloud_kms_key_v1.bucket_kms_key[0].id
     }
   }
   tags = var.tags
