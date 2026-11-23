@@ -10,7 +10,8 @@ resource "opentelekomcloud_kms_key_v1" "bucket_kms_key" {
   pending_days    = 7
   is_enabled      = "true"
   tags            = var.tags
-
+  rotation_enabled  = var.kms_key_rotation_interval != null
+  rotation_interval = var.kms_key_rotation_interval
 }
 
 resource "opentelekomcloud_obs_bucket" "bucket" {
