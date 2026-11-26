@@ -19,6 +19,17 @@ variable "enable_sse" {
   default     = true
 }
 
+variable "kms_key_rotation_interval" {
+  # Has no effect if enable_sse is false.
+  type        = number
+  description = "Rotation interval in days (30-365) for the KMS key created by this module. Setting a value enables automatic key rotation. null turns rotation off, also on a key where it was enabled outside of Terraform. Has no effect if enable_sse is false. (default: null)"
+  default     = null
+  validation {
+    condition     = var.kms_key_rotation_interval == null ? true : var.kms_key_rotation_interval >= 30 && var.kms_key_rotation_interval <= 365
+    error_message = "kms_key_rotation_interval not in range 30 <= x <= 365"
+  }
+}
+
 variable "force_destroy" {
   type        = bool
   description = "Destroy all objects from the bucket so that the bucket can be destroyed without error."
